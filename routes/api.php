@@ -15,14 +15,13 @@ Route::group(['prefix'=> 'user'], function () {
     Route::get('/categories/{categoryId}/types/{typeId}/products', [UserInterfaceController::class, 'getProducts']);
     Route::get('/products/{id}', [UserInterfaceController::class, 'getProductDetails']);
 
-    Route::post('/order', [OrderController::class, 'create'])
+    Route::post('/order', [OrderController::class, 'createOrder']);
+    Route::get('/order/{id}', [OrderController::class, 'getOrder']);
+
+    Route::post('/order/items', [OrderController::class, 'addItemToOrder']);
 
     /* TODO:
     Műveletek
-    - GET /order - Megrendelés adatai
-    - POST /order - Megrendelés létrehozása
-    - POST /order/product/{id} - Termék hozzáadása a rendeléshez
-        - megj.: ha nincs megrendelés szám, akkor új megrendelés nyitása!
     - PUT /order/product/{id} - Termék mennyiségének növelése/csökkentése
     - DELETE /order/product/{id} - Termék törlése a rendelésből
     Befejezés
